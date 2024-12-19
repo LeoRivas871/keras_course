@@ -41,3 +41,50 @@ print(x.ndim)
 '''
 NOTA: Uniendo tensores 3D en una cadena, podemos crear un tensor 4D, y asi sucesivamente.
 '''
+
+#Atributos clave
+'''Un tensor esta definido por tres atributos clave:
+---Numero de ejes(rango):
+---Forma o forma(shape): Se trata de una tupla de enteros que describe cuántas dimensiones tiene el tensor en cada eje.
+en cada eje. Por ejemplo la muestra de matriz anterior tiene la forma (3,5), y la del tensor 3D
+tiene la forma (3,3,5). Un vector tiene una forma con un único elemento. como (5,), mientras que un escalar tiene forma vacia, ().
+---Tipo de datos(dtype):'''
+
+#Para concretar esto. Vamos a volver a los datos que hemos procesado en el ejemplo de MNIST. Primero Cargamos el conjunto MNIST
+from keras.datasets import mnist
+(train_images, train_labels), (test_images, test_labels) = mnist.load_data()
+
+print(train_images.ndim)
+print(train_images.shape)
+print(train_images.dtype)
+
+'''Lo que tenemos aquí es un tensor 3D de enteros de 8 bits. Más exactamente, es una cadena de 60000 matrices de 28*28 enteros.
+Cada una de esas matrices es una imagen en escala de grises, con coeficientes entre 0 y 255.
+Veamos el 4to digito de este tensor 3D. '''
+digit = train_images[4]
+
+import matplotlib.pyplot as plt
+plt.imshow(digit, cmap=plt.cm.binary)
+plt.show()
+
+#Manipular tensores en Numpy
+'''En el ejemplo anterior, hemos seleccionado un dígito especifico a lo largo del primer eje utilizando la sintaxis train_images[i].
+Seleccionar elementos especificos en un tensor se llama "Cortar el tensor". Veamos las operaciones de corte de tensores que podemos hacer
+en cadenas numpy.
+El siguiente ejemplo selecciona los números de 10 a 100 y los pone en una cadena con forma (90,28,28): '''
+my_slice = train_images[10:100]
+print(my_slice.shape)
+
+'''Esto equivale a está notacion mas detallada, que especifica un índice de inicio y otro de fin para la division en cada eje del tensor.'''
+my_slice = train_images[10:100, :, :]
+print(my_slice.shape)
+my_slice = train_images[10:100, 0:28, 0:28]
+print(my_slice.shape)
+'''En general podemos seleccionar entre dos índices cualquiera a lo largo de cada eje del tensor. Por ejemplo, para seleccionar 14*14 pixeles en la esquina inferior
+derecha de todas las imagenes, podemos hacer:'''
+my_slice = train_images[:, 14:, 14:]
+print(my_slice.shape)
+'''También se puede usar índices negativos. Al igual que los índices negativos en las listas de python, indican una posición relativa al final del eje actual. Para recortar
+las imagenes en fracciones de 14x14 centradas en el medio, haremos esto:'''
+my_slice = train_images[:, 7:-7, 7:-7]
+print(my_slice.shape)
