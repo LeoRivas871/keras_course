@@ -1,0 +1,43 @@
+import numpy as np
+
+#Escalar
+x = np.array(12)
+print(x)
+print(x.ndim)
+
+#Vectores (tensores 1D)
+'''Una cadena de números se denomina 'Vector' o 'Tensor' de 1D. Se dice que un tensor 1D tiene exactamente un eje.'''
+x = np.array([12,3,6,14,7])
+print(x)
+print(x.ndim)
+'''Este vector tiene 5 entradas, por eso se llama vector "5-dimensional". No confunda un vector 5D con un tensor 5D. Un vector 5D
+tiene un solo eje y cinco dimensiones a lo largo del mismo, mientras que un tensor 5D tiene cinco ejes y puede tener cualquier cantidad
+de dimensiones a lo largo de cada eje.
+La dimensionalidad puede denotar el número de entradas a lo largo de un eje especifico (como en el caso de nuestro vector 5D), o el numero
+de ejes en un tensor, lo cual puede resultar confuso a veces'''
+
+#Matrices (Tensores 2D)
+'''Una cadena de vectores es una matriz o tensor 2D. Una matriz tiene dos ejes (a menudo designados filas y columnas). Puede interpretar una
+matriz como una cuadricula rectangular de números'''
+x = np.array([[5,78,2,34,0],
+              [6,79,3,35,1],
+              [7,80,4,36,2]])
+print(x.ndim)
+
+#Tensores 3D y tensores con más dimensiones
+'''Si unimos esas matrices en una nueva cadena, obtendremos un tensor 3D, que podría visualizarse como un cubo de números.'''
+x = np.array([[[5,78,2,34,0],
+              [6,79,3,35,1],
+              [7,80,4,36,2]],
+             [[5,78,2,34,0],
+              [6,79,3,35,1],
+              [7,80,4,36,2]],
+              [[5,78,2,34,0],
+              [6,79,3,35,1],
+              [7,80,4,36,2]]])
+             
+print(x.ndim)
+
+'''
+NOTA: Uniendo tensores 3D en una cadena, podemos crear un tensor 4D, y asi sucesivamente.
+'''
